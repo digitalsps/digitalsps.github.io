@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="ms">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/previews/009/341/843/original/time-clock-icon-sign-design-free-png.png"/>
-<title>eSign SPS JPN Kelantan</title>
-<style type="text/css">
-::-webkit-scrollbar {
- display: none;}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>eSign SPS JPN Kelantan</title>
+  <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/previews/009/341/843/original/time-clock-icon-sign-design-free-png.png"/>
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .fallback-link {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
 </head>
-<body style="padding: 0px;margin: 0px;width: 100%;height: 100vh;border: none">
-<iframe src="https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec" style="width: 100%; height: 100%;border: none;" allow="geolocation"></iframe>
+<body>
+
+<!-- Paparan fallback jika pelayar tidak iframe-friendly -->
+<div class="fallback-link" id="fallbackLink">
+  <p>Sila klik pautan di bawah untuk membuka sistem:</p>
+  <a href="https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec" target="_blank">
+    Buka Sistem eSign
+  </a>
+</div>
+
+<!-- Iframe akan dimuat jika bukan Safari iOS -->
+<iframe id="esignIframe"
+  src=""
+  allow="geolocation"
+  style="width: 100%; height: 100%; border: none; display: none;">
+</iframe>
+
+<script>
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const iframe = document.getElementById("esignIframe");
+  const fallback = document.getElementById("fallbackLink");
+  const targetURL = "https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec";
+
+  if (isIOS) {
+    // Untuk iOS, tunjukkan link sahaja
+    fallback.style.display = "block";
+  } else {
+    // Untuk selain iOS, guna iframe
+    iframe.src = targetURL;
+    iframe.style.display = "block";
+  }
+</script>
+
 </body>
 </html>
