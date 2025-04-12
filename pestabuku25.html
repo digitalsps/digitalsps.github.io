@@ -39,7 +39,7 @@
 <!-- Paparan fallback jika pelayar tidak iframe-friendly -->
 <div class="fallback-link" id="fallbackLink">
   <p>Sila klik pautan di bawah untuk membuka sistem:</p>
-  <a href="https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec" target="_blank">
+  <a href="https://script.google.com/macros/s/AKfycbzfW5yoxrNDqicliTmA-U94P2L2wn-RpH8T_2pjcj1SpSou-MJ030aRhxsAzlkj4uliSQ/exec" target="_blank">
     Buka Sistem eSign
   </a>
 </div>
@@ -55,7 +55,7 @@
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   const iframe = document.getElementById("esignIframe");
   const fallback = document.getElementById("fallbackLink");
-  const targetURL = "https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec";
+  const targetURL = "https://script.google.com/macros/s/AKfycbzfW5yoxrNDqicliTmA-U94P2L2wn-RpH8T_2pjcj1SpSou-MJ030aRhxsAzlkj4uliSQ/exec";
 
   if (isIOS) {
     fallback.style.display = "block";
