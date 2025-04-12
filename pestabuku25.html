@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>eSign SPS JPN Kelantan</title>
+  <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/previews/009/341/843/original/time-clock-icon-sign-design-free-png.png"/>
+  <style>
+    ::-webkit-scrollbar { display: none; }
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    .fallback-link {
+      display: none;
+      padding: 20px;
+      text-align: center;
+    }
+    #browserWarning {
+      display: none;
+      padding: 10px;
+      text-align: center;
+      background-color: #fff3cd;
+      color: #856404;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Amaran pelayar tidak disokong -->
+<div id="browserWarning">
+  Anda sedang menggunakan <span id="browserName"></span>. Untuk pengalaman terbaik, sila gunakan pelayar <strong>Google Chrome</strong>.
+</div>
+
+<!-- Paparan fallback jika pelayar tidak iframe-friendly -->
+<div class="fallback-link" id="fallbackLink">
+  <p>Sila klik pautan di bawah untuk membuka sistem:</p>
+  <a href="https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec" target="_blank">
+    Buka Sistem eSign
+  </a>
+</div>
+
+<!-- Iframe akan dimuat jika bukan Safari iOS -->
+<iframe id="esignIframe"
+  src=""
+  allow="geolocation"
+  style="width: 100%; height: 100%; border: none; display: none;">
+</iframe>
+
+<script>
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const iframe = document.getElementById("esignIframe");
+  const fallback = document.getElementById("fallbackLink");
+  const targetURL = "https://script.google.com/macros/s/AKfycbyNIsdgS73eNKTulFLo-T3QxrjG6vfLGlzwlSCLBU_2iC0jhjVi51qO_9J0Mlv-UKmQww/exec";
+
+  if (isIOS) {
+    fallback.style.display = "block";
+  } else {
+    iframe.src = targetURL;
+    iframe.style.display = "block";
+  }
+
+  function detectBrowser() {
+    const userAgent = navigator.userAgent;
+    const vendor = navigator.vendor;
+
+    let browser = "pelayar tidak dikenali";
+
+    if (/CriOS/.test(userAgent)) {
+      browser = "Google Chrome (iOS)";
+    } else if (/Chrome/.test(userAgent) && /Google Inc/.test(vendor)) {
+      browser = "Google Chrome";
+    } else if (/Safari/.test(userAgent) && /Apple Computer/.test(vendor)) {
+      browser = "Safari";
+    } else if (/Firefox/.test(userAgent)) {
+      browser = "Mozilla Firefox";
+    } else if (/Edg/.test(userAgent)) {
+      browser = "Microsoft Edge";
+    }
+
+    document.getElementById("browserName").textContent = browser;
+
+    if (browser !== "Google Chrome" && browser !== "Google Chrome (iOS)") {
+      document.getElementById("browserWarning").style.display = "block";
+    }
+  }
+
+  detectBrowser();
+</script>
+
+</body>
+</html>
